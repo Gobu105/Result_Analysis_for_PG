@@ -1,0 +1,391 @@
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    DateOfBirth DATE,
+    Email VARCHAR(100),
+    S_Number BIGINT,
+    Parent_no BIGINT,
+    Address VARCHAR(20),
+    Gender VARCHAR(1) --M=male F=female
+);
+
+
+
+
+
+INSERT INTO Students (StudentID, FirstName, LastName, DateOfBirth, Email, S_Number, Parent_no ,Address, Gender)
+VALUES 
+      (2371001, 'Advait', 'Pradhan', '2000-05-15', 'advaitpradhan@example.com', 1234567890, 9876543210,'ShivajiNagar','M'),
+      (2371002, 'Kaushal', 'Pawar', '2002-04-20', 'kaushalp@example.com', 5678901234, 5432109876,'Akurdi','M'),
+      (2371003, 'Isha', 'Vaidya', '2000-09-18', 'isha.v@example.com', 8901234567, 2109876543,'Sahakarnagar','F'),
+      (2371004, 'Shambhavi', 'Marne', '2002-12-04', 'sham.m@example.com', 9012345678, 1230987654,'Kothrud','F'),
+      (2371005, 'Riya', 'Kedari', '2001-04-03', 'riya.k@example.com', 5678901234, 6543210987,'Shanivar Peth','F'),
+      (2371006, 'Prathamesh', 'Shinde', '2000-10-08', 'prathamesh.s@example.com', 3456789012, 8765432109,'Akurdi','M'),
+      (2371007, 'Pushkar', 'Oli', '2003-09-05', 'pushkar.o@example.com', 8901234567, 3210987654,'Pashan','M'),
+      (2371008, 'Mahek', 'Patel', '2001-02-28', 'Mahek.p@example.com', 2345678901, 8765432109,'Shanivar Peth','F'),
+      (2371009, 'Jatin', 'Joshi', '2000-06-30', 'jatin.j@example.com', 3456789012, 9876543210,'Sahakarnagar','M'),
+      (2371010, 'Akanksha', 'Pimparkar', '2003-03-29', 'akanksha.p@example.com', 7890123456, 3210987654,'Sahakarnagar','F');
+      
+  
+ 
+   
+
+SELECT * FROM Students;
+
+
+
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Qualifications VARCHAR(50),
+    Email VARCHAR(100),
+    P_number BIGINT,
+    Address VARCHAR(20),
+    Gender VARCHAR(1)
+);
+
+
+
+
+INSERT INTO Professors (ProfessorID, FirstName, LastName, Email, Qualifications, P_number,Address, Gender)
+VALUES 
+      (1, 'Amit', 'Sharma', 'amit.sharma@example.com', 'Ph.D', 1234567890,'Shivajinagar','M'),
+      (2, 'Smita', 'Patil', 'smita.patil@example.com', 'Double Ph.D', 2345678901,'Aundh','F'),
+      (3, 'Rajiv', 'Gupta', 'rajiv.gupta@example.com', 'Post Graduation', 3456789012,'Aundh','M'),
+      (4, 'Neelam', 'Verma', 'neelam.verma@example.com', 'Double Ph.D', 4567890123,'Shivajinagar','F'),
+      (5, 'Anjali', 'Rajput', 'anjali.rajput@example.com', 'Post Graduation', 5678901234,'Shivajinagar','F'),
+      (6, 'Vikram', 'Joshi', 'vikram.yadav@example.com', 'Ph.D', 6789012345,'Baudhan','M'),
+      (7, 'Preeti', 'Dave', 'kavita.joshi@example.com', 'Post Graduation', 7890123456,'Sahakarnagar','F'),
+      (8, 'Rahul', 'Kumar', 'rahul.kumar@example.com', 'Graduation', 8901234567,'Sahakarnagar','M'),
+      (9, 'Neha', 'Mishra', 'neha.mishra@example.com', 'Double Ph.D', 9012345678,'Shanivar Peth','F'),
+      (10, 'Suresh', 'Shukla', 'suresh.shukla@example.com', 'Ph.D', 9876543210,'Shivajinagar','M');
+
+
+
+SELECT * FROM Professors;
+
+
+
+
+
+
+
+CREATE TABLE Course_Details(
+    SemID VARCHAR(10),
+    CourseID VARCHAR(20) PRIMARY KEY,
+    SubjectName VARCHAR(100),
+    CourseName VARCHAR(50),
+    ProfessorID INT,
+    StartDate DATE,
+    ExamDate DATE,
+    FOREIGN KEY(ProfessorID) REFERENCES Professors(ProfessorID)
+);
+
+INSERT INTO Course_Details(SemID ,CourseID ,SubjectName ,CourseName ,ProfessorID ,StartDate ,ExamDate)
+VALUES
+    ('Sem_1','CS101','Electronics', 'Computer Science',1,'2023-07-15','2023-11-10'),
+    ('Sem_1','CS102','Mathematics', 'Computer Science',2,'2023-07-15','2023-11-11'),
+    ('Sem_1','CS103','Computer Science', 'Computer Science',3,'2023-07-15','2023-11-12'),
+    ('Sem_1','CS104','Statistics', 'Computer Science',4,'2023-07-15','2023-11-13'),
+    ('Sem_1','CS105','Data Structures and Algorithms', 'Computer Science',5,'2023-07-15','2023-11-14'),
+    ('Sem_1','MB101','Molecular Biology', 'Microbiology',10,'2023-07-10','2023-11-15'),
+    ('Sem_1','MB102','Cancer Biology', 'Microbiology',8,'2023-07-10','2023-11-16'),
+    ('Sem_1','MB103','rDNA Technology', 'Microbiology',4,'2023-07-10','2023-11-17'),
+    ('Sem_1','MB104','Ecology', 'Microbiology',9,'2023-07-10','2023-11-18'),
+    ('Sem_1','MB105','Industrial Microbiology', 'Microbiology',9,'2023-07-10','2023-11-19'),
+    ('Sem_1','H101','Ancient Civilizations', 'History',5,'2023-07-1','2023-11-1'),
+    ('Sem_1','H102','World History', 'History',7,'2023-07-1','2023-11-2'),
+    ('Sem_1','MAT101','Calculus I', 'Mathematics',6,'2023-08-15','2023-12-10'),
+    ('Sem_1','MAT102','Linear Algebra', 'Mathematics',6,'2023-08-15','2023-12-11'),
+    ('Sem_1','MAT103','Probability and Statistics', 'Mathematics',4,'2023-08-15','2023-12-12'),
+    
+    ('Sem_2','CS201','Electronics', 'Computer Science',1,'2023-12-15','2024-04-20'),
+    ('Sem_2','CS202','Mathematics', 'Computer Science',2,'2023-12-15','2024-04-21'),
+    ('Sem_2','CS203','Computer Science', 'Computer Science',3,'2023-12-15','2024-04-22'),
+    ('Sem_2','CS204','Statistics', 'Computer Science',4,'2023-12-15','2024-04-23'),
+    ('Sem_2','MB201','Molecular Biology', 'Microbiology',10,'2023-12-10','2024-04-24'),
+    ('Sem_2','MB202','Cancer Biology', 'Microbiology',8,'2023-12-10','2024-04-25'),
+    ('Sem_2','MB203','rDNA Technology', 'Microbiology',4,'2023-12-10','2024-04-26'),
+    ('Sem_2','MB204','Ecology', 'Microbiology',9,'2023-12-10','2024-04-27'),
+    ('Sem_2','H201','Ancient Civilizations', 'History',5,'2023-12-1','2024-04-11'),
+    ('Sem_2','H202','World History', 'History',7,'2023-12-1','2024-04-12'),
+    ('Sem_2','MAT201','Calculus I', 'Mathematics',6,'2024-01-15','2024-05-19'),
+    ('Sem_2','MAT202','Linear Algebra', 'Mathematics',6,'2024-01-15','2024-05-20'),
+    ('Sem_2','MAT203','Probability and Statistics', 'Mathematics',4,'2024-01-15','2024-05-21'),
+    
+    ('Sem_3','CS301','Electronics', 'Computer Science',1,'2024-07-15','2024-11-11'),
+    ('Sem_3','CS302','Mathematics', 'Computer Science',2,'2024-07-15','2024-11-12'),
+    ('Sem_3','CS303','Computer Science', 'Computer Science',3,'2024-07-15','2024-11-13'),
+    ('Sem_3','MB301','Molecular Biology', 'Microbiology',10,'2024-07-10','2024-11-14'),
+    ('Sem_3','MB302','Cancer Biology', 'Microbiology',8,'2024-07-10','2024-11-15'),
+    ('Sem_3','MB303','rDNA Technology', 'Microbiology',4,'2024-07-10','2024-11-16'),
+    ('Sem_3','H301','Ancient Civilizations', 'History',5,'2024-07-1','2024-11-1'),
+    ('Sem_3','H302','World History', 'History',7,'2024-07-1','2024-11-2'),
+    ('Sem_3','MAT301','Calculus I', 'Mathematics',6,'2024-08-15','2024-12-10'),
+    ('Sem_3','MAT302','Linear Algebra', 'Mathematics',6,'2024-08-15','2024-12-11'),
+    
+    ('Sem_4','CS401','Electronics', 'Computer Science',1,'2024-12-15','2025-04-21'),
+    ('Sem_4','CS402','Mathematics', 'Computer Science',2,'2024-12-15','2025-04-22'),
+    ('Sem_4','MB401','Molecular Biology', 'Microbiology',10,'2024-12-10','2025-04-23'),
+    ('Sem_4','MB402','Cancer Biology', 'Microbiology',8,'2024-12-10','2025-04-24'),
+    ('Sem_4','H401','Ancient Civilizations', 'History',5,'2024-12-1','2025-04-11'),
+    ('Sem_4','H402','World History', 'History',7,'2024-12-1','2025-04-12'),
+    ('Sem_4','MAT401','Calculus I', 'Mathematics',6,'2025-01-15','2025-05-21'),
+    ('Sem_4','MAT402','Linear Algebra', 'Mathematics',6,'2025-01-15','2025-05-22');
+    
+
+
+SELECT * FROM Course_Details;
+
+
+
+CREATE TABLE Student_course(
+  StudentID INT,
+  Course VARCHAR(20),
+  FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+);
+
+
+INSERT INTO Student_course(StudentID , Course)
+VALUES
+(2371001 , 'Computer Science'),
+(2371002 , 'Computer Science'),
+(2371003 , 'Microbiology'),
+(2371004 , 'Microbiology'),
+(2371005 , 'Microbiology'),
+(2371006 , 'History'),
+(2371007 , 'History'),
+(2371008 , 'Mathematics'),
+(2371009 , 'Mathematics'),
+(2371010 , 'Mathematics');
+
+
+SELECT * FROM Student_course;
+
+
+
+CREATE TABLE Semwise_marks(
+    StudentID INT,
+
+    Sem1_Regu VARCHAR(10),
+    Marks_1 INT,
+    
+    Sem2_Regu VARCHAR(10),
+    Marks_2 INT,
+    
+    Sem3_Regu VARCHAR(10),
+    Marks_3 INT,
+    
+    Sem4_Regu VARCHAR(10),
+    Marks_4 INT,
+    
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (Sem1_Regu) REFERENCES Course_Details(CourseID),
+    FOREIGN KEY (Sem2_Regu) REFERENCES Course_Details(CourseID),
+    FOREIGN KEY (Sem3_Regu) REFERENCES Course_Details(CourseID),
+    FOREIGN KEY (Sem4_Regu) REFERENCES Course_Details(CourseID)
+);
+
+INSERT INTO Semwise_marks( StudentID , Sem1_Regu , Marks_1 ,
+Sem2_Regu , Marks_2 , 
+Sem3_Regu , Marks_3 ,
+Sem4_Regu , Marks_4 )
+VALUES
+(2371001 , 'CS101' ,52 ,'CS201' ,74 ,'CS301' ,87 ,'CS401' ,81),
+(2371001 , 'CS102' ,83 ,'CS202' ,51 ,'CS302' ,16 ,'CS401' ,96),
+(2371001 , 'CS103' ,75 ,'CS203' ,78 ,'CS303' ,24 , NULL , NULL),
+(2371001 , 'CS104' ,70 ,'CS204' ,86 , NULL , NULL , NULL , NULL),
+(2371001 , 'CS105' ,97 , NULL , NULL , NULL , NULL , NULL , NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371002 , 'CS101' ,49 ,'CS201' ,77 ,'CS301' ,84 ,'CS401' ,87),
+(2371002 , 'CS102' ,15 ,'CS202' ,50 ,'CS302' ,48 ,'CS402' ,86),
+(2371002 , 'CS103' ,61 ,'CS203' ,75 ,'CS303' ,74 , NULL , NULL),
+(2371002 , 'CS104' ,69 ,'CS204' ,94 , NULL , NULL , NULL , NULL),
+(2371002 , 'CS105' ,15 , NULL , NULL , NULL , NULL , NULL , NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371003 , 'MB101' ,49 ,'MB201' ,32 ,'MB301' ,63 ,'MB401' ,92),
+(2371003 , 'MB102' ,96 ,'MB202' ,80 ,'MB302' ,53 ,'MB402' ,91),
+(2371003 , 'MB103' ,59 ,'MB203' ,32 ,'MB303' ,86 , NULL , NULL),
+(2371003 , 'MB104' ,79 ,'MB204' ,71 , NULL , NULL , NULL , NULL),
+(2371003 , 'MB105' ,80 , NULL , NULL , NULL , NULL , NULL , NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371004 , 'MB101' ,77 ,'MB201' ,81 ,'MB301' ,54 ,'MB401' ,86),
+(2371004 , 'MB102' ,89 ,'MB202' ,08 ,'MB302' ,14 ,'MB402' ,08),
+(2371004 , 'MB103' ,61 ,'MB203' ,84 ,'MB303' ,89, NULL , NULL),
+(2371004 , 'MB104' ,96 ,'MB204' ,82 , NULL , NULL , NULL , NULL),
+(2371004 , 'MB105' ,58 , NULL , NULL , NULL , NULL , NULL , NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371005 , 'MB101' ,07 ,'MB201' ,69 ,'MB301' ,78 ,'MB401' ,89),
+(2371005 , 'MB102' ,70 ,'MB202' ,74 ,'MB302' ,98 ,'MB402' ,86),
+(2371005 , 'MB103' ,83 ,'MB203' ,94 ,'MB303' ,70 , NULL , NULL),
+(2371005 , 'MB104' ,69 ,'MB204' ,65 , NULL , NULL , NULL , NULL),
+(2371005 , 'MB105' ,94 , NULL , NULL , NULL ,NULL ,NULL, NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371006 , 'H101' ,72 ,'H201' ,52 ,'H301' ,74 ,'H401' ,69),
+(2371006 , 'H102' ,55 ,'H202' ,62 ,'H302' ,06 ,'H402' ,69),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371007 , 'H101' ,80 ,'H201' ,79 ,'H301' ,87 ,'H401' ,89),
+(2371007 , 'H102' ,78 ,'H202' ,68 ,'H302' ,55 ,'H402' ,98),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371008 , 'MAT101' ,70 ,'MAT201' ,86 ,'MAT301' ,87 ,'MAT401' ,86),
+(2371008 , 'MAT102' ,89 ,'MAT202' ,08 ,'MAT302' ,72 ,'MAT402' ,98),
+(2371008 , 'MAT103' ,90 ,'MAT203' ,95 , NULL , NULL , NULL , NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371009 , 'MAT101' ,90 ,'MAT201' ,97 ,'MAT301' ,99 ,'MAT401' ,100),
+(2371009 , 'MAT102' ,99 ,'MAT202' ,90 ,'MAT302' ,89 ,'MAT402' ,98),
+(2371009 , 'MAT103' ,97 ,'MAT203' ,75 , NULL , NULL , NULL , NULL),
+(NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371010 , 'MAT101' ,65 ,'MAT201' ,50 ,'MAT301' ,78 ,'MAT401' ,95),
+(2371010 , 'MAT102' ,67 ,'MAT202' ,78 ,'MAT302' ,57 ,'MAT402' ,84),
+(2371010 , 'MAT103' ,08 ,'MAT203' ,96 , NULL , NULL , NULL , NULL);
+
+
+
+
+SELECT * FROM Semwise_marks;
+
+
+
+
+CREATE TABLE Backlog(
+    StudentID INT,
+    
+    Sem1_Back VARCHAR(10),
+    Marks_1 INT,
+    
+    Sem2_Back VARCHAR(10),
+    Marks_2 INT,
+    
+    Sem3_Back VARCHAR(10),
+    Marks_3 INT,
+    
+    Sem4_Back VARCHAR(10),
+    Marks_4 INT,
+    
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (Sem1_Back) REFERENCES Course_Details(CourseID),
+    FOREIGN KEY (Sem2_Back) REFERENCES Course_Details(CourseID),
+    FOREIGN KEY (Sem3_Back) REFERENCES Course_Details(CourseID),
+    FOREIGN KEY (Sem4_Back) REFERENCES Course_Details(CourseID)
+);
+
+
+
+INSERT INTO Backlog( StudentID , Sem1_Back , Marks_1 ,
+Sem2_Back , Marks_2 , 
+Sem3_Back , Marks_3 ,
+Sem4_Back , Marks_4 )
+VALUES
+(2371001 , NULL , NULL , NULL , NULL , 'CS302' ,87 , NULL , NULL),
+(2371001 , NULL , NULL , NULL , NULL , 'CS303' ,50 , NULL , NULL),
+(2371002 , 'CS102' ,98 , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371002 , 'CS105' ,67 , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371003 , NULL , NULL ,'MB201' ,68 , NULL , NULL , NULL , NULL),
+(2371003 , NULL , NULL ,'MB203' ,86 , NULL , NULL , NULL , NULL),
+(2371004 , NULL , NULL ,'MB202' ,57 ,'MB302' ,73 ,'MB402' ,80),
+(2371005 , 'MB101' ,70 , NULL , NULL , NULL , NULL , NULL , NULL),
+(2371005 , NULL , NULL , NULL , NULL ,'MB302' ,85 , NULL , NULL),
+(2371006 , NULL , NULL , NULL , NULL , 'H302' ,60 , NULL , NULL),
+(2371008 , NULL , NULL ,'MAT202' ,87 , NULL , NULL , NULL , NULL),
+(2371010 , 'MAT103' ,78 , NULL , NULL, NULL , NULL , NULL , NULL);
+
+
+
+
+SELECT *FROM Backlog;
+
+
+
+CREATE TABLE Results_SemWise( 
+ResultID INT ,
+StudentID INT,
+Sem1_per DECIMAL(5, 2),
+Back1_per DECIMAL(5,2),
+Sem2_per DECIMAL(5, 2),
+Back2_per DECIMAL(5,2),
+Sem3_per DECIMAL(5, 2),
+Back3_per DECIMAL(5,2),
+Sem4_per DECIMAL(5, 2),
+Back4_per DECIMAL(5,2),
+FOREIGN KEY (StudentID) REFERENCES Students(StudentID) 
+);
+
+
+
+
+INSERT INTO Results_SemWise (ResultID ,StudentID ,
+Sem1_per , Back1_per , Sem2_per , Back2_per ,
+Sem3_per ,Back3_per ,Sem4_per ,Back4_per)
+VALUES
+    (2200501, 2371001,75.4,NULL,72.25,NULL,42.34,74.67,88.5,NULL),
+    (2200502, 2371002,41.8,68.8,74.00,NULL,68.67,NULL,86.5,NULL),
+    (2200503, 2371003,72.6,NULL,53.75,76.25,67.34,NULL,91.5,NULL),
+    (2200504, 2371004,76.2,NULL,63.75,76.00,51.34,72.00,47.00,83.00),
+    (2200505, 2371005,64.6,77.2,75.5,NULL,82.00,NULL,87.5,NULL),
+    (2200506, 2371006,63.5,NULL,57.00,NULL,40.00,67.00,69.00,NULL),
+    (2200507, 2371007,79.00,NULL,73.5,NULL,71.00,NULL,93.5,NULL),
+    (2200508, 2371008,83.00,NULL,63.00,89.34,79.5,NULL,92.00,NULL),
+    (2200509, 2371009,95.34,NULL,87.34,NULL,94.00,NULL,99,NULL),
+    (2200510, 2371010,46.67,70.00,74.67,NULL,67.5,NULL,89.5,NULL);
+    
+
+
+SELECT *FROM Results_SemWise;
+
+
+
+
+CREATE TABLE Integreted_result(
+ResultID INT,
+StudentID INT,
+Cerdits INT,
+Final_per DECIMAL(5,2),
+FOREIGN KEY(StudentID) REFERENCES Students(StudentID)
+);
+
+INSERT INTO Integreted_result(ResultID ,StudentID ,Cerdits ,Final_per)
+VALUES 
+    (2200501,2371001,96,77.70),
+    (2200502,2371002,96,74.49),
+    (2200503,2371003,96,76.93),
+    (2200504,2371004,96,76.80),
+    (2200505,2371005,96,80.55),
+    (2200506,2371006,96,64.12),
+    (2200507,2371007,96,79.25),
+    (2200508,2371008,96,85.96),
+    (2200509,2371009,96,93.92),
+    (2200510,2371010,96,75.42);
+
+
+
+
+SELECT *FROM Integreted_result
+
+
+CREATE VIEW V1 AS SELECT CD.* 
+FROM Course_Details CD 
+WHERE CD.CourseName = 'Microbiology';
+
+SELECT * FROM V1 ;
+
+CREATE VIEW V2 AS SELECT Students.StudentID,
+    CONCAT(Students.FirstName, ' ', Students.LastName) AS StudentName,
+    Course_Details.CourseID,
+    Course_Details.CourseName,
+    Course_Details.StartDate,
+    Course_Details.ExamDate
+FROM Students 
+JOIN Student_course ON Students.StudentID = Student_course.StudentID
+JOIN Course_Details ON Student_course.Course = Course_Details.CourseName
+GROUP BY
+    Students.StudentID,
+    Course_Details.CourseID
+HAVING COUNT(Course_Details.CourseID)<2
+ORDER BY 
+    Students.StudentID ASC,
+    Course_Details.CourseID;
+
+
+SELECT * FROM V2 ;
