@@ -1,0 +1,107 @@
+USE PG_Result;
+
+DROP TABLE IF EXISTS Integrated_Result;
+DROP TABLE IF EXISTS Results_SemWise;
+DROP TABLE IF EXISTS Backlog;
+DROP TABLE IF EXISTS Semwise_Marks;
+DROP TABLE IF EXISTS Student_Course;
+DROP TABLE IF EXISTS Course_Details;
+DROP TABLE IF EXISTS Professors;
+DROP TABLE IF EXISTS Students;
+
+-- =========================
+-- STUDENTS TABLE
+-- =========================
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    DateOfBirth DATE,
+    Email VARCHAR(100),
+    S_Number BIGINT,
+    Parent_no BIGINT,
+    Address VARCHAR(20),
+    Gender VARCHAR(1) -- M = male, F = female
+);
+-- =========================
+-- PROFESSORS TABLE
+-- =========================
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Qualifications VARCHAR(50),
+    Email VARCHAR(100),
+    P_number BIGINT,
+    Address VARCHAR(20),
+    Gender VARCHAR(1)
+);
+-- =========================
+-- COURSE DETAILS TABLE
+-- =========================
+CREATE TABLE Course_Details (
+    SemID VARCHAR(10),
+    CourseID VARCHAR(20) PRIMARY KEY,
+    SubjectName VARCHAR(100),
+    CourseName VARCHAR(50),
+    ProfessorID INT,
+    StartDate DATE,
+    ExamDate DATE,
+    FOREIGN KEY (ProfessorID) REFERENCES Professors(ProfessorID)
+);
+-- =========================
+-- STUDENT_COURSE TABLE
+-- =========================
+CREATE TABLE Student_Course (
+    StudentID INT,
+    CourseID VARCHAR(20),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Course_Details(CourseID),
+    PRIMARY KEY (StudentID, CourseID)
+);
+-- =========================
+-- SEMWISE_MARKS TABLE
+-- =========================
+CREATE TABLE Semwise_Marks (
+    StudentID INT,
+    CourseID VARCHAR(20),
+    SemID VARCHAR(10),
+    InternalMarks DECIMAL(5,2),
+    ExternalMarks DECIMAL(5,2),
+    TotalMarks DECIMAL(5,2),
+    Grade VARCHAR(2),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Course_Details(CourseID)
+);
+-- =========================
+-- BACKLOG TABLE
+-- =========================
+CREATE TABLE Backlog (
+    StudentID INT,
+    CourseID VARCHAR(20),
+    SemID VARCHAR(10),
+    Reason VARCHAR(100),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Course_Details(CourseID)
+);
+-- =========================
+-- RESULTS_SEMWISE TABLE
+-- =========================
+CREATE TABLE Results_SemWise (
+    StudentID INT,
+    SemID VARCHAR(10),
+    TotalMarks DECIMAL(7,2),
+    Grade VARCHAR(2),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+);
+-- =========================
+-- INTEGRATED_RESULT TABLE
+-- =========================
+CREATE TABLE Integrated_Result (
+    StudentID INT,
+    StudentName VARCHAR(100),
+    CourseName VARCHAR(50),
+    SemID VARCHAR(10),
+    TotalMarks DECIMAL(7,2),
+    Grade VARCHAR(2)
+);
